@@ -119,7 +119,7 @@ import pandas as pd
 #
 # def write(result, msg):
 #     print(msg," 넓이는 ", result, "m2입니다")
-#
+
 # say()
 # ret = calc_area(type=1, a=5, b=5)
 # area, msg = calc_area(2,5,5)
@@ -136,10 +136,10 @@ import pandas as pd
 # mod.say()
 # area, msg = mod.calc_area(type=1,a =5, b=5)
 # write(area, msg)
-
-a = [1.5,2,3,4,5]
-b = map(float, a)
-c = divmod(5,3)
+#
+# a = [1.5,2,3,4,5]
+# b = map(float, a)
+# c = divmod(5,3)
 #
 # #파이썬 내장 함수
 # abs(a) #a의 절댓갑 반환
@@ -166,48 +166,48 @@ c = divmod(5,3)
 # tuple(a) #객체 afmf 튜플로 변환
 # type(a) #a의 자료형 반환
 # zip(a,b,c,d) #여러 객체를 묶어주는 함수
-
-print("최댓값: ", max(a), "최솟갑: ", min(a))
-print("몫과 나머지: ", c)
-print("c의 자료형: ", type(c), type(c[0]), type(c[1]))
-print("2의 4제곱: ", pow(2,4))
-print("절댓갑: ", abs(-4))
-
-list1, list2 = [1,2,3], [4,5.0,6]
-a, b = np.array(list1), np.array(list2)
-c = a+ b
-d = a -b
-e = a * b
-f = a/ b
-g = a * 2
-h = b +2
-for i in [a,b,c,d,e,f,g,h]:
-    print("{0} 자료형".format(i) , i)
-list3 = list1 +list2
-print(list3)
-a = np.zeros((2,5) , np.int8)
-b = np.ones((3,1), np.uint8)
-c = np.empty((1,5), np.float16)
-d = np.full(5,15, np.float32)
-
-for i in [a,b,c]:
-    print(type(i), type(i[0]), type(i[0][0]))
-print(type(d), type(d[0]))
-print("c 형채:" ,c.shape, 'd 형태', d.shape)
-print(a),print(b)
-print(c), print(d)
-
-np.random.seed(10)
-a = np.random.rand(2,3) #균일분포 난수 2행 3열 행렬
-b = np.random.rand(3,2) #평균0, 표준편차 1인 정규분포 난수
-c = np.random.rand(6) #규일분포 난수 -1차원 행렬
-d = np.random.randint(1,100,6) #1~100 사이의 정수 난수 1차원 행렬
-c = np.reshape(c, (2,3)) #형태 변경 방법
-d = d.reshape(2, -1)
-for i in [a,b,c,d]:
-    print("형태:", i.shape , "\n", i)
-print('다차원 객체 1차원 변환 방법')
-print('a = ', a.flatten()) #다차원 ndarray 객체를 1차원 벡터로 변환
-print('b = ', np.ravel(b)) #다차원 모든 개개체를 1차원 벡터로 변환
-print('c = ', np.reshape(c, (-1, ))) #넘파이의 reshape() 함수 사용
-print('d = ', d.reshape(-1, )) #ndarray 객체 내장 reshape() 함수 사용
+#
+# print("최댓값: ", max(a), "최솟갑: ", min(a))
+# print("몫과 나머지: ", c)
+# print("c의 자료형: ", type(c), type(c[0]), type(c[1]))
+# print("2의 4제곱: ", pow(2,4))
+# print("절댓갑: ", abs(-4))
+#
+# list1, list2 = [1,2,3], [4,5.0,6]
+# a, b = np.array(list1), np.array(list2)
+# c = a+ b
+# d = a -b
+# e = a * b
+# f = a/ b
+# g = a * 2
+# h = b +2
+# for i in [a,b,c,d,e,f,g,h]:
+#     print("{0} 자료형".format(i) , i)
+# list3 = list1 +list2
+# print(list3)
+# a = np.zeros((2,5) , np.int8)
+# b = np.ones((3,1), np.uint8)
+# c = np.empty((1,5), np.float16)
+# d = np.full(5,15, np.float32)
+#
+# for i in [a,b,c]:
+#     print(type(i), type(i[0]), type(i[0][0]))
+# print(type(d), type(d[0]))
+# print("c 형채:" ,c.shape, 'd 형태', d.shape)
+# print(a),print(b)
+# print(c), print(d)
+#
+# np.random.seed(10)
+# a = np.random.rand(2,3) #균일분포 난수 2행 3열 행렬
+# b = np.random.rand(3,2) #평균0, 표준편차 1인 정규분포 난수
+# c = np.random.rand(6) #규일분포 난수 -1차원 행렬
+# d = np.random.randint(1,100,6) #1~100 사이의 정수 난수 1차원 행렬
+# c = np.reshape(c, (2,3)) #형태 변경 방법
+# d = d.reshape(2, -1)
+# for i in [a,b,c,d]:
+#     print("형태:", i.shape , "\n", i)
+# print('다차원 객체 1차원 변환 방법')
+# print('a = ', a.flatten()) #다차원 ndarray 객체를 1차원 벡터로 변환
+# print('b = ', np.ravel(b)) #다차원 모든 개개체를 1차원 벡터로 변환
+# print('c = ', np.reshape(c, (-1, ))) #넘파이의 reshape() 함수 사용
+# print('d = ', d.reshape(-1, )) #ndarray 객체 내장 reshape() 함수 사용
