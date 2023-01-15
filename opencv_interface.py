@@ -1,6 +1,6 @@
 import numpy as np
 import cv2
-
+import matplotlib.pyplot as plt
 ##윈도우 이동
 # image = np.zeros((200, 400), np.uint8) # 200행 400열을 생성
 # image[:] = 200 # 색상을 회색으로
@@ -344,12 +344,12 @@ import cv2
 
 ##카메라 프레임 읽기
 
-def put_string (frame, text,pt, value, color=(120,200,90)):
-    text +=str(value)
-    shade = (pt[0] +2, pt[1] +2)
-    font = cv2.FONT_HERSHEY_SIMPLEX
-    cv2.putText(frame, text, shade , font, 0.7,(0,0,0),2)
-    cv2.putText(frame, text, pt, font, 0.7,color, 2)
+# def put_string (frame, text,pt, value, color=(120,200,90)):
+#     text +=str(value)
+#     shade = (pt[0] +2, pt[1] +2)
+#     font = cv2.FONT_HERSHEY_SIMPLEX
+#     cv2.putText(frame, text, shade , font, 0.7,(0,0,0),2)
+#     cv2.putText(frame, text, pt, font, 0.7,color, 2)
 # capture = cv2.VideoCapture(0)
 # if capture.isOpened() == False:
 #     raise Exception("카메라 연결 입력")
@@ -435,24 +435,75 @@ def put_string (frame, text,pt, value, color=(120,200,90)):
 
 ##동영상 파일 읽기
 
-capture = cv2.VideoCapture("videos/video_file.avi")
-if not capture.isOpened(): raise Exception("동영상 파일 개방 안됨")
+# capture = cv2.VideoCapture("videos/isegye-yeongungeun-ireohge-congeul-ssonda-shorts-1080-ytshorts.savetube.me.mp4")
+# if not capture.isOpened(): raise Exception("동영상 파일 개방 안됨")
+#
+# frame_rate = capture.get(cv2.CAP_PROP_FPS)
+# delay = int(1000 / frame_rate)
+# frame_cnt = 0
+#
+# while True:
+#     ret , frame = capture.read()
+#     if not ret or cv2.waitKey(delay) >= 0: break
+#     blue, green , red = cv2.split(frame)
+#     frame_cnt +=1
+#
+#     if 100 <=frame_cnt < 200: cv2.add(blue,100,blue)
+#     elif 200 <= frame_cnt < 300: cv2.add(green, 100, green)
+#     elif 300 <= frame_cnt < 400: cv2.add(red, 100, red)
+#
+#     frame = cv2.merge([blue, green, red])
+#     put_string(frame, 'frame_cnt: ', (20,30), frame_cnt)
+#     cv2.imshow("Read Video File", frame)
+#
+# capture.release()
 
-frame_rate = capture.get(cv2.CAP_PROP_FPS)
-delay = int(1000 / frame_rate)
-frame_cnt = 0
+## matplotlib 라이브러리로 영상 표시
 
-while True:
-    ret , frame = capture.read()
-    if not ret or cv2.waitKey(delay) >= 0: break
-    blue, green , red = cv2.split(frame)
-    frame_cnt +=1
+#
+# image = cv2.imread("images/write_test1.jpg", cv2.IMREAD_COLOR)
+# if image is None: raise Exception("영상파일 읽기 에러")
+#
+# rows, cols = image.shape[:2]
+# rgb_img = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+# gray_img = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+#
+# fig = plt.figure(num=1, figsize = (3,4))
+# plt.imshow(image), plt.title('fiqure1- original(bgr)')
+# plt.axis('off'), plt.tight_layout()
+#
+# fig = plt.figure(figsize=(6,4))
+# plt.suptitle('figure2- pyplot image display')
+# plt.subplot(1,2,1), plt.imshow(rgb_img)
+# plt.axis([0,cols,rows,0]),plt.title('rgb color')
+# plt.subplot(1,2,2), plt.imshow(gray_img, cmap='gray')
+# plt.title('gray_img2')
+# plt.show()
 
-    if 100 <=frame_cnt < 200: cv2.add(blue,100,blue)
-    elif 200 <= frame_cnt < 300: cv2.add(green, 100, green)
-    elif 300 <= frame_cnt < 400: cv2.add(red, 100, red)
+##서브플롯 그리기 및 보간 적용
 
-    frame = cv2.merge([blue, green, red])
-    put_string(frame, 'frame_cnt: ', (20,30), frame_cnt)
-    cv2.imshow("Read Video File", frame)
-capture.release()
+# methods = ["none", 'nearest','bilinear','bicubic','spline16','spline36']
+# grid = np.random.rand(5,5)
+#
+# fig , axs = plt.subplots(nrows=2,ncols =3, figsize =(8,6))
+# for ax, method in zip(axs.flat, methods):
+#     ax.imshow(grid, interpolation=method, cmap ='gray')
+#     ax.set_title(method)
+# plt.tight_layout(),plt.show()
+
+##그래프 그리기
+
+# x = np.arange(10)
+# y1 = np.arange(10)
+# y2 = np.arange(10)**2
+# y3 = np.random.choice(50, size= 10)
+# plt.figure(figsize=(5,3))
+# plt.plot(x,y1, 'b--', linewidth=2)
+# plt.plot(x,y2, 'go--', linewidth=3)
+# plt.plot(x,y3, 'c+:', linewidth =5)
+#
+# plt.title("Line examples")
+# plt.axis([0,10,0,80])
+# plt.tight_layout()
+# plt.savefig(fname='sample.png', dpi =300)
+# plt.show()
