@@ -505,5 +505,5 @@ import matplotlib.pyplot as plt
 # plt.title("Line examples")
 # plt.axis([0,10,0,80])
 # plt.tight_layout()
-# plt.savefig(fname='sample.png', dpi =300)
+# plt.savefig(fname='images/sample.png', dpi =300)
 # plt.show()
