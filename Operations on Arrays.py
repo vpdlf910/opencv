@@ -222,4 +222,141 @@ import numpy as np
 
 ##행렬 합/ 평균 연산
 
-image = cv2.imread("")
+# image = cv2.imread("images/opencv_sample.jpg", cv2.IMREAD_COLOR)
+# if image is None: raise Exception("영상파일 읽기 오류 발생")
+# mask = np.zeros(image.shape[:2],np.uint8)
+# mask[60:160,20:120] = 255
+#
+# sum_value = cv2.sumElems(image) #채널별 합 튜플로 반환
+# mean_value1 = cv2.mean(image) # 채널별 평균 튜플로 반환
+# mean_value2 = cv2.mean(image, mask) #마스크 영역 만 평균을 구함
+#
+# print("sum_value 자료형:",type(sum_value),type(sum_value[0]))
+# print('[sum_value] =', sum_value)
+# print('[mean_value1] =',mean_value1)
+# print('[mean_value2] =', mean_value2)
+# print()
+#
+# mean, stddev = cv2.meanStdDev(image)
+# mean2, stddev2 = cv2.meanStdDev(image, mask = mask)
+# print('mean 자료형:', type(mean), type(mean[0][0]))
+# print('[mean] =', mean.flatten())
+# print('[stddev] =', stddev.flatten())
+# print()
+#
+# print('[mean2] =', mean2.flatten())
+# print('[stddev2] =', stddev2.flatten())
+# cv2.imshow('image', image)
+# cv2.imshow('mask', mask)
+# cv2.waitKey(0)
+
+##행렬 원소 정렬
+
+# m = np.random.randint(0,100,15).reshape(3,5)
+#
+# sort1 = cv2.sort(m,cv2.SORT_EVERY_ROW)
+# sort2 = cv2.sort(m,cv2.SORT_EVERY_COLUMN)
+# sort3 = cv2.sort(m,cv2.SORT_EVERY_ROW + cv2.SORT_DESCENDING)
+# sort4 = np.sort(m, axis =1)
+# sort5 = np.sort(m, axis =0)
+# sort6 = np.sort(m, axis =1)[:,::-1]
+#
+# titles = ['m','sort1','sort2','sort3','sort4','sort5','sort6']
+# for title in titles:
+#     print('[%s] = \n%s\n' %(title, eval(title)))
+
+## 정렬 인덱스 반환
+
+# m = np.random.randint(0,100,15).reshape(3,5)
+# m_sort1 = cv2.sortIdx(m,cv2.SORT_EVERY_ROW)
+# m_sort2 = cv2.sortIdx(m,cv2.SORT_EVERY_COLUMN)
+# m_sort3 = np.argsort(m,axis =0)
+# ##정렬된 후의 정렬되기 전 인덱스 위치를 반환
+# print('[m1] = \n%s\n'% m)
+# print( '[m_sort1] = \n%s\n' % m_sort1)
+# print( '[m_sort2] = \n%s\n' % m_sort3)
+# print( '[m_sort3] = \n%s\n' % m_sort2)
+
+##cv2.sortIdx()를 활용한 사각형 크기 정렬
+
+# def print_rects(rects):
+#     print('-' * 46)
+#     print('사각형 원소\t\t랜덤 사각형 정보\t 크기')
+#     print('-' * 46)
+#     for i ,(x,y,w,h,a) in enumerate(rects):
+#         print('rects[%i] = [(%3d,%3d) from (%3d,%3d)] %5d' %(i,x,y,w,h,a))
+#
+# rands = np.zeros((5,5), np.uint16)
+# starts = cv2.randn(rands[:,:2], 100,50)
+# ends = cv2.randn(rands[:,2:-1], 300,50)
+# sizes = cv2.absdiff(starts, ends)
+# areas = sizes[:,0] *sizes[:,1]
+# rects = rands.copy()
+# rects[:,2:-1] = sizes
+# rects[:,-1] = areas
+# idx = cv2.sortIdx(areas, cv2.SORT_EVERY_COLUMN).flatten()
+# print_rects(rects)
+# print_rects(rects[idx.astype('int')])
+
+##행렬 축소 연산
+
+# m = np.random.rand(3,5) * 1000//10
+#
+# reduce_sum = cv2.reduce(m, dim = 0, rtype =cv2.REDUCE_SUM)
+# reduce_avg = cv2.reduce(m, dim = 1, rtype =cv2.REDUCE_AVG)
+# reduce_max = cv2.reduce(m, dim = 0, rtype =cv2.REDUCE_MAX)
+# reduce_min = cv2.reduce(m, dim = 1, rtype =cv2.REDUCE_MIN)
+#
+# print("[m] = \n%s\n" % m)
+# print('[m_reduce_sum] =', reduce_sum.flatten())
+# print('[m_reduce_avg] =', reduce_avg.flatten())
+# print('[m_reduce_max] =', reduce_max.flatten())
+# print("[m_reduce_min] =", reduce_min.flatten())
+
+##행렬 곱 연산
+# src1 = np.array([1,2,3,1,2,3], np.float32).reshape(2,3)
+# src2 = np.array([1,2,3,4,5,6], np.float32).reshape(2,3)
+# src3 = np.array([1,2,1,2,1,2], np.float32).reshape(3,2)
+# alpha, beta = 1.0,1.0
+#
+# dst1 = cv2.gemm(src1,src2,alpha,None, beta, flags =cv2.GEMM_1_T)
+# dst2 = cv2.gemm(src1,src2,alpha,None, beta, flags =cv2.GEMM_2_T)
+# dst3 = cv2.gemm(src1,src3,alpha,None, beta)
+# titles = ['src1','src2','src3','dst1','dst2','dst3']
+# for title in titles:
+#     print('[%s] = \n%s\n'%(title, eval(title)))
+
+##cv2.gemm()을 이용한 회전 변환
+
+# theta = 20 * np.pi /180
+# rot_mat = np.array([[np.cos(theta), -np.sin(theta)], [np.sin(theta), np.cos(theta)]],np.float32)
+# pts1 =np.array([(250,30),(400,70),(350,250),(150,200)],np.float32)
+# pts2 = cv2.gemm(pts1,rot_mat, 1, None, 1,flags=cv2.GEMM_2_T)
+#
+# for i, (pt1, pt2) in enumerate(zip(pts1, pts2)):
+#     print('pts1[%d] = %s, pst2[%d] = %s'%(i,pt1,i,pt2))
+#
+# image = np.full((400,500,3), 255 ,np.uint8)
+# cv2.polylines(image,[np.int32(pts1)], True,(0,255,0),2)
+# cv2.polylines(image,[np.int32(pts2)], True,(255,0,0),3)
+# cv2.imshow('image', image)
+# cv2.waitKey(0)
+
+## cv2.invert()와 cv2.solve()로 연립방정식 풀이
+
+# data = [3,0,6,-3,4,2,-5,-1,9]
+# m1 = np.array(data, np.float32).reshape(3,3)
+# m2 = np.array([36,10,28], np.float32)
+#
+# ret, inv = cv2.invert(m1, cv2.DECOMP_LU)
+# if ret:
+#     dst1 = inv.dot(m2)
+#     dst2 = cv2.gemm(inv, m2, 1,None, 1)
+#     _ , dst3 = cv2.solve(m1,m2, cv2.DECOMP_LU)
+#     print('[inv] = \n%s\n' % inv)
+#     print('[dst1] =', dst1.flatten())
+#     print('[dst2] =', dst2.flatten())
+#     print('[dst3] =', dst3.flatten())
+# else:
+#     print('역행렬이 존재하지 않습니다.')
+
